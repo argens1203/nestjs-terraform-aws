@@ -2,3 +2,6 @@
 
 terraform.tfstate
 terraform.tfstate.*
+
+## TMP FILES
+private_key.pem
