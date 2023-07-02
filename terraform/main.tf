@@ -22,8 +22,29 @@ resource "aws_key_pair" "generated_key" {
   public_key = tls_private_key.key_pair.public_key_openssh
 }
 
+data "aws_ami" "amazon_linux" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["al2023*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
+  }
+
+  owners = ["amazon"]
+}
+
 resource "aws_instance" "app_server" {
-  ami                    = "ami-08d70e59c07c61a3a"
+  ami                    = data.aws_ami.amazon_linux.id
   instance_type          = "t2.micro"
   key_name               = aws_key_pair.generated_key.key_name
   vpc_security_group_ids = [aws_security_group.allow_ssh.id]

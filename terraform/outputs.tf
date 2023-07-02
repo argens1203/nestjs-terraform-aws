@@ -19,5 +19,5 @@ output "private_key" {
 }
 
 output "default_user_name" {
-  value = "ubunutu"
+  value = "ec2-user"
 }
