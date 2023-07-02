@@ -76,5 +76,16 @@ resource "aws_security_group" "allow_ssh" {
     protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"],
     self             = false
+    },
+    {
+      description      = ""
+      ipv6_cidr_blocks = []
+      prefix_list_ids  = [],
+      security_groups  = [],
+      from_port        = 3000
+      to_port          = 3000
+      protocol         = "tcp"
+      cidr_blocks      = ["0.0.0.0/0"],
+      self             = false
   }]
 }
